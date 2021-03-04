@@ -32,8 +32,9 @@ func makeCreateUserEndpoint(s Service) endpoint.Endpoint {
 func makeGetUserEndpoint(s Service) endpoint.Endpoint {
 	return func(ctx context.Context, request interface{}) (interface{}, error) {
 		req := request.(GetUserRequest)
+		fmt.Println(req, "endpoint -> 2")
 		resp, err := s.GetUser(ctx, req.Id)
-		fmt.Println(resp, "resp makeGetUserEndpoint")
+		fmt.Println(resp, "response from service -> 6")
 		return GetUserResponse{
 			ID:       resp.ID,
 			Email:    resp.Email,

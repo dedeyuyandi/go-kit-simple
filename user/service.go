@@ -2,6 +2,7 @@ package user
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/go-kit/kit/log"
 	"github.com/go-kit/kit/log/level"
@@ -37,12 +38,13 @@ func (s service) CreateUser(ctx context.Context, req CreateUserRequest) (string,
 
 func (s service) GetUser(ctx context.Context, id uuid.UUID) (*User, error) {
 	logger := log.With(s.logger, "method", "GetUser")
+	fmt.Println(id, "service -> 3")
 	resp, err := s.repostory.GetUser(id)
 	if err != nil {
 		level.Error(logger).Log("err", err)
 		return nil, err
 	}
-	logger.Log("Get user", id)
+	fmt.Println(resp, "response from repo -> 5")
 	return &User{
 		ID:       resp.ID,
 		Email:    resp.Email,

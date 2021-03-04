@@ -3,6 +3,7 @@ package user
 import (
 	"database/sql"
 	"errors"
+	"fmt"
 
 	"github.com/go-kit/kit/log"
 	"github.com/gofrs/uuid"
@@ -50,7 +51,7 @@ func (repo *repo) CreateUser(req CreateUserRequest) error {
 }
 
 func (repo *repo) GetUser(id uuid.UUID) (*User, error) {
-	// fmt.Println(getUserByID, "getUserByID")
+	fmt.Println(id, "repository -> 4")
 	row := repo.db.QueryRow(getUserByID, id)
 	var u User
 	if err := row.Scan(&u.ID, &u.Email, &u.Password); err != nil {

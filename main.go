@@ -40,7 +40,7 @@ func main() {
 	{
 		var err error
 
-		db, err = sql.Open("postgres", dbsource)
+		db, err = sql.Open("postgres", "postgresql://postgres:postgres@localhost:5432/postgres?sslmode=disable")
 		if err != nil {
 			level.Error(logger).Log("exit", err)
 			os.Exit(-1)

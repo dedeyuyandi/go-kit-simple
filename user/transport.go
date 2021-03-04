@@ -3,6 +3,7 @@ package user
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"net/http"
 
 	httptransport "github.com/go-kit/kit/transport/http"
@@ -44,6 +45,7 @@ func commonMiddleware(next http.Handler) http.Handler {
 }
 
 func encodeResponse(ctx context.Context, w http.ResponseWriter, response interface{}) error {
+	fmt.Println(response, "respose -> 7")
 	return json.NewEncoder(w).Encode(response)
 }
 
@@ -64,6 +66,7 @@ func decodeGetUserReq(ctx context.Context, r *http.Request) (interface{}, error)
 	req = GetUserRequest{
 		Id: ids,
 	}
+	fmt.Println(ids, "transport -> 1")
 	return req, nil
 }
 
